@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>رفيق — إصدار 0.3 🕌</title>
+  <meta name="theme-color" content="#0f1417">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- SVG sprite -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-4v-6H10v6H6v-9H3z" fill="currentColor"/></symbol>
+    <symbol id="icon-quran" viewBox="0 0 24 24"><path d="M3 3h14l4 4v14a1 1 0 0 1-1 1H3z" fill="currentColor"/></symbol>
+    <symbol id="icon-hadith" viewBox="0 0 24 24"><path d="M4 4h16v2H4zM4 8h12v2H4zM4 12h8v2H4z" fill="currentColor"/></symbol>
+    <symbol id="icon-prayer" viewBox="0 0 24 24"><path d="M12 2l4 7h-8zM5 22h14v-2H5z" fill="currentColor"/></symbol>
+    <symbol id="icon-qibla" viewBox="0 0 24 24"><path d="M12 2l7 19H5z" fill="currentColor"/></symbol>
+    <symbol id="icon-hijri" viewBox="0 0 24 24"><path d="M12 2a8 8 0 100 16 6 6 0 110-12z" fill="currentColor"/></symbol>
+    <symbol id="icon-tasbih" viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20 4 4 0 100-8 6 6 0 100-12z" fill="currentColor"/></symbol>
+    <symbol id="icon-adhkar" viewBox="0 0 24 24"><path d="M4 6h16v2H4zM4 10h12v2H4z" fill="currentColor"/></symbol>
+    <symbol id="icon-dua" viewBox="0 0 24 24"><path d="M12 2C8 6 6 10 6 12s2 6 6 10c4-4 6-8 6-10s-2-6-6-10z" fill="currentColor"/></symbol>
+    <symbol id="icon-reminder" viewBox="0 0 24 24"><path d="M12 2v2M7 6h10l-1 5H8zM5 21h14v-2H5z" fill="currentColor"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8z" fill="currentColor"/></symbol>
+  </svg>
+
+  <!-- Splash -->
+  <section id="splash" class="splash">
+    <div class="splash-card" role="dialog" aria-label="Welcome to Rafiq">
+      <div class="splash-badge">🕌</div>
+      <h1 class="splash-title">أهلًا بك برفيق</h1>
+      <p class="splash-sub">إصدار 0.3 — تحسينات وثبات. النسخة 0.4 قادمة قريبًا.</p>
+      <button id="enter-btn" class="btn primary large">دخول</button>
+      <div class="splash-foot note">المطور: ليث النسر — سوريا • جزانا الله وإياكم خيرًا</div>
+      <div class="splash-loader" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <!-- App -->
+  <main id="app" class="hidden" aria-live="polite">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">🕌</div>
+        <div class="brand-title">
+          <h2 id="app-title">رفيق</h2>
+          <div class="brand-sub note">إصدار 0.3</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="segmented theme-switch" role="tablist" aria-label="Theme">
+          <button id="theme-light" title="Light">☀️</button>
+          <button id="theme-dark" title="Dark">🌙</button>
+          <button id="theme-system" title="System">🖥️</button>
+        </div>
+
+        <select id="lang-select" class="select" aria-label="Language select">
+          <option value="ar">العربية</option>
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+        </select>
+      </div>
+    </header>
+
+    <nav class="nav-grid" role="navigation" aria-label="primary navigation">
+      <button class="nav-btn" data-section="home"><svg class="ico"><use href="#icon-home"></use></svg><span data-i18n="home">الرئيسية</span></button>
+      <button class="nav-btn" data-section="quran"><svg class="ico"><use href="#icon-quran"></use></svg><span data-i18n="quran">القرآن</span></button>
+      <button class="nav-btn" data-section="hadith"><svg class="ico"><use href="#icon-hadith"></use></svg><span data-i18n="hadith">الحديث</span></button>
+      <button class="nav-btn" data-section="prayer"><svg class="ico"><use href="#icon-prayer"></use></svg><span data-i18n="prayer">الصلاة</span></button>
+      <button class="nav-btn" data-section="qibla"><svg class="ico"><use href="#icon-qibla"></use></svg><span data-i18n="qibla">القبلة</span></button>
+      <button class="nav-btn" data-section="hijri"><svg class="ico"><use href="#icon-hijri"></use></svg><span data-i18n="hijri">التقويم الهجري</span></button>
+      <button class="nav-btn" data-section="tasbih"><svg class="ico"><use href="#icon-tasbih"></use></svg><span data-i18n="tasbih">المسبحة</span></button>
+      <button class="nav-btn" data-section="adhkar"><svg class="ico"><use href="#icon-adhkar"></use></svg><span data-i18n="adhkar">الأذكار</span></button>
+      <button class="nav-btn" data-section="duas"><svg class="ico"><use href="#icon-dua"></use></svg><span data-i18n="duas">الأدعية</span></button>
+      <button class="nav-btn" data-section="reminders"><svg class="ico"><use href="#icon-reminder"></use></svg><span data-i18n="reminders">التذكيرات</span></button>
+      <button class="nav-btn" data-section="settings"><svg class="ico"><use href="#icon-settings"></use></svg><span data-i18n="settings">الإعدادات</span></button>
+    </nav>
+
+    <section id="content" class="container">
+      <!-- HOME -->
+      <section id="home" class="page active" data-page="home">
+        <div class="card">
+          <div class="row between">
+            <h3 data-i18n="ayahOfDay">آية اليوم</h3>
+            <div id="next-prayer" class="small note">—</div>
+          </div>
+          <div id="ayah-wrap" class="ayah-wrap">
+            <div class="skeleton-ayah"></div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h4>حول رفيق</h4>
+            <p class="note">تطبيق إسلامي: قرآن، أحاديث، أذكار، أوقات الصلاة، مسبحة وتذكيرات — مصمم بعناية.</p>
+          </div>
+          <div class="card">
+            <h4>دعاء</h4>
+            <p id="dev-note">المطور: ليث النسر — سوريا. جزانا الله وإياكم خيرًا. لا تنسونا من الدعاء.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- QURAN -->
+      <section id="quran" class="page" data-page="quran">
+        <div class="card">
+          <div class="row between">
+            <h3 data-i18n="quran">القرآن</h3>
+            <div id="q-loading" class="tiny note">…</div>
+          </div>
+
+          <div class="segmented" id="q-mode">
+            <button id="q-read" class="active" data-mode="read" data-i18n="read">قراءة</button>
+            <button id="q-listen" data-mode="listen" data-i18n="listen">استماع</button>
+          </div>
+
+          <div class="grid two mt">
+            <div>
+              <label data-i18n="surah">السورة</label>
+              <select id="surah-select" class="select"></select>
+            </div>
+            <div id="reciter-box" class="hidden">
+              <label data-i18n="reciter">القارئ</label>
+              <select id="reciter-select" class="select"></select>
+            </div>
+          </div>
+
+          <div id="quran-content" class="quran-content mt">
+            <div class="skeleton-lines"></div>
+          </div>
+          <audio id="audio" controls class="hidden" preload="none"></audio>
+        </div>
+      </section>
+
+      <!-- HADITH -->
+      <section id="hadith" class="page" data-page="hadith">
+        <div class="card">
+          <div class="row between">
+            <h3 data-i18n="hadith">الحديث — صحيح البخاري</h3>
+            <div id="hadith-source" class="tiny note">—</div>
+          </div>
+
+          <div class="controls-grid">
+            <div>
+              <label data-i18n="rangeStart">من رقم</label>
+              <input id="hadith-start" type="number" min="1" value="1" class="input"/>
+            </div>
+            <div>
+              <label data-i18n="count">عدد</label>
+              <input id="hadith-count" type="number" min="1" max="5000" value="20" class="input"/>
+            </div>
+            <div class="center-v">
+              <button id="hadith-load" class="btn primary" data-i18n="load">تحميل</button>
+            </div>
+          </div>
+
+          <div class="search mt">
+            <input id="hadith-search" class="input" placeholder="ابحث ضمن المعروض…" />
+          </div>
+
+          <div id="hadith-controls" class="mt row between">
+            <div id="hadith-progress" class="note tiny">جاهز</div>
+            <div>
+              <button id="hadith-prev" class="btn">السابق</button>
+              <button id="hadith-next" class="btn">التالي</button>
+            </div>
+          </div>
+
+          <div id="hadith-list" class="hadith-list mt"></div>
+        </div>
+      </section>
+
+      <!-- PRAYER -->
+      <section id="prayer" class="page" data-page="prayer">
+        <div class="card">
+          <h3 data-i18n="prayer">مواقيت الصلاة</h3>
+          <div class="grid two">
+            <div>
+              <button id="detect-location" class="btn" data-i18n="detect">تحديد موقعي</button>
+            </div>
+            <div class="grid two">
+              <input id="lat" class="input" placeholder="Latitude"/>
+              <input id="lon" class="input" placeholder="Longitude"/>
+            </div>
+          </div>
+          <div id="prayer-times" class="times mt"></div>
+          <div id="next-prayer-banner" class="note mt">العدّاد: —</div>
+          <div class="note" data-i18n="adhanNote">سيتم تذكيرك عند الأذان أثناء فتح الصفحة.</div>
+        </div>
+      </section>
+
+      <!-- QIBLA -->
+      <section id="qibla" class="page" data-page="qibla">
+        <div class="card">
+          <h3 data-i18n="qibla">اتجاه القبلة</h3>
+          <div class="grid two">
+            <div class="compass-wrap">
+              <div id="compass" class="compass">
+                <svg viewBox="0 0 100 100" class="compass-svg">
+                  <circle cx="50" cy="50" r="45" class="compass-bg"></circle>
+                </svg>
+                <div id="needle" class="needle"></div>
+              </div>
+            </div>
+            <div>
+              <button id="enable-compass" class="btn" data-i18n="enableCompass">تفعيل البوصلة</button>
+              <div id="qibla-info" class="mt note"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HIJRI -->
+      <section id="hijri" class="page" data-page="hijri">
+        <div class="card">
+          <h3 data-i18n="hijri">التقويم الهجري</h3>
+          <div id="hijri-today" class="mt">…</div>
+          <div class="divider"></div>
+          <h4 data-i18n="ramadanCountdown">عدّاد قدوم رمضان</h4>
+          <div id="ramadan-countdown" class="countdown">…</div>
+        </div>
+      </section>
+
+      <!-- TASBIH -->
+      <section id="tasbih" class="page" data-page="tasbih">
+        <div class="card center-column">
+          <h3 data-i18n="tasbih">المسبحة</h3>
+          <div class="tasbih-circle-wrap">
+            <svg class="tasbih-ring" viewBox="0 0 120 120" aria-hidden="true">
+              <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#28a36a"/><stop offset="1" stop-color="#3bb485"/></linearGradient></defs>
+              <circle cx="60" cy="60" r="48" class="ring-bg"></circle>
+              <circle cx="60" cy="60" r="48" class="ring-progress" stroke="url(#g1)"></circle>
+            </svg>
+
+            <button id="tasbih-inc" class="btn huge pulse">تسبيح</button>
+            <div class="tasbih-info mt">
+              <div>العدد: <b id="tasbih-count">0</b></div>
+              <div>التقدّم: <b id="tasbih-progress">0%</b></div>
+            </div>
+          </div>
+
+          <div class="mt">
+            <label>الهدف</label>
+            <input id="tasbih-target" type="number" min="1" value="33" class="input"/>
+            <button id="tasbih-reset" class="btn danger mt">تصفير</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADHKAR -->
+      <section id="adhkar" class="page" data-page="adhkar">
+        <div class="card">
+          <h3 data-i18n="adhkar">الأذكار</h3>
+          <div class="grid two mt">
+            <select id="adhkar-category" class="select"></select>
+            <input id="adhkar-search" class="input" placeholder="ابحث…" />
+          </div>
+          <div id="adhkar-list" class="list mt"></div>
+        </div>
+      </section>
+
+      <!-- DUA -->
+      <section id="duas" class="page" data-page="duas">
+        <div class="card">
+          <h3 data-i18n="duas">الأدعية</h3>
+          <input id="duas-search" class="input" placeholder="ابحث…" />
+          <div id="duas-list" class="list mt"></div>
+        </div>
+      </section>
+
+      <!-- REMINDERS -->
+      <section id="reminders" class="page" data-page="reminders">
+        <div class="card">
+          <h3 data-i18n="reminders">التذكيرات</h3>
+          <div class="grid three">
+            <input id="rem-msg" class="input" placeholder="نص التذكير" />
+            <input id="rem-interval" class="input" type="number" min="5" value="60" />
+            <select id="rem-unit" class="select"><option value="seconds">ثوانٍ</option><option value="minutes" selected>دقائق</option><option value="hours">ساعات</option></select>
+          </div>
+          <div class="grid two mt">
+            <button id="rem-start" class="btn primary">ابدأ</button>
+            <button id="rem-stop" class="btn danger">أوقف</button>
+          </div>
+          <div class="note mt">التذكيرات تعمل ما دامت الصفحة مفتوحة. لتشغيل إشعارات النظام فعّل الإشعارات وفتّح التطبيق عبر HTTPS.</div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings" class="page" data-page="settings">
+        <div class="card">
+          <h3 data-i18n="settings">الإعدادات</h3>
+          <div class="grid two">
+            <div>
+              <label data-i18n="theme">السمة</label>
+              <div class="segmented">
+                <button id="set-light">☀️</button>
+                <button id="set-dark">🌙</button>
+                <button id="set-system">🖥️</button>
+              </div>
+            </div>
+            <div>
+              <label data-i18n="language">اللغة</label>
+              <select id="lang-select-2" class="select"><option value="ar">العربية</option><option value="en">English</option><option value="tr">Türkçe</option></select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="app-footer">
+      <div class="marquee">النسخة 0.4 قادمة قريبًا — ادعوا لنا</div>
+      <small>المطور: ليث النسر — سوريا. جزانا الله وإياكم خيرًا.</small>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
